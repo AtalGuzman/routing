@@ -1,8 +1,8 @@
 import argparse
-import pandas as pd
+import utils
 
 
-if __name__ == "__main__":
+def main():
     # Obtención de parámetros línea de comando
     parser = argparse.ArgumentParser(
         description='Procesa los path de los archivos a los parámetros')
@@ -15,9 +15,10 @@ if __name__ == "__main__":
     parser.add_argument("-I", "--incompatibilidades",
                         help="Archivo opcional con las incompatibilidades entre las demas")
     args = parser.parse_args()
-    # Carga de archivos
-    costos = pd.read_csv(args.Costos)
-    carga = pd.read_csv(args.Carga)
-    capacidades = pd.read_csv(args.Capacidades)
-    incompatibilidades = pd.read_csv(
-        args.incompatibilidades) if args.incompatibilidades else None
+
+    problema = utils.asignacion(args.Costos, args.Carga,
+                          args.Capacidades, args.incompatibilidades)
+
+
+if __name__ == "__main__":
+    main()
