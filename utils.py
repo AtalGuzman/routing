@@ -10,16 +10,14 @@ class asignacion:
         self.capacidades = pd.read_csv(capacidades)  # capacidad de cada camion
         self.incompatibilidad = pd.read_csv(
             incompatibilidad) if incompatibilidad else None  # incomptaibilidad en caso de que exista
-
+    
     def functionObjetivo(self, solucion):
-        valor = 0
-        for i, s in enumerate(solucion):
-            valor = valor + self.costos[s][i]
-        return valor
+        return sum([self.costos[s][i] for i, s in enumerate(solucion)])
 
     def restriccionCapacidad(self, solucion):
         for j, c in enumerate(self.capacidades):
-            conjuntoI = [i for i in range(solucion) if j == solucion[i]]
+            conjuntoI = [self.costos[j][i]
+                         for i in range(solucion) if j == solucion[i]]
             if sum(conjuntoI) > c:
                 return False
         return True
