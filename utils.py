@@ -9,11 +9,14 @@ def fo(solucion, costos):
 def restriccionCapacidad(solucion, capacidades):
     for j, c in enumerate(capacidades):
         conjuntoI = [i for i in range(solucion) if j == solucion[i]]
-        conjuntoI = np.array(conjuntoI)
-        if conjuntoI.sum() > c:
+        if sum(conjuntoI) > c:
             return False
     return True
 
 def restriccionCompatibilidad(solucion, incompatibilidad):
-    
+    incompatibilidadTemp = incompatibilidad.copy()
+    for i,incomp in enumerate(incompatibilidadTemp):
+        if solucion[i] == solucion[incomp]:
+            return False
+        del incompatibilidad[incomp]
     return True
