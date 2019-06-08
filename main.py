@@ -17,7 +17,7 @@ def main():
     args = parser.parse_args()
 
     problema = utils.asignacion(args.Costos, args.Carga,
-                          args.Capacidades, args.incompatibilidades)
+                                args.Capacidades, args.incompatibilidades)
 
 
 if __name__ == "__main__":
