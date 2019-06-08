@@ -16,7 +16,7 @@ def restriccionCapacidad(solucion, capacidades):
 def restriccionCompatibilidad(solucion, incompatibilidad):
     incompatibilidadTemp = incompatibilidad.copy()
     for i,incomp in enumerate(incompatibilidadTemp):
-        if solucion[i] == solucion[incomp]:
-            return False
-        del incompatibilidad[incomp]
+        if incomp > 0 and solucion[i] == solucion[incomp]:
+                return False
+        del incompatibilidadTemp[incomp]
     return True
