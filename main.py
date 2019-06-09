@@ -1,6 +1,7 @@
 import argparse
 import utils
 import estrategias as strg
+import yaml
 
 def main():
     # Obtención de parámetros línea de comando
@@ -14,14 +15,20 @@ def main():
         "Carga", help="Directorio dónde está el archivo de carga de cada demanda")
     parser.add_argument(
         "Capacidades", help="Directorio dónde está el archivo de capacidades de los vehículos")
+    parser.add_argument("configuracion", help = "Archivo de configuración para parámetros de simulated annealing")
     parser.add_argument("-I", "--incompatibilidades",
                         help="Archivo opcional con las incompatibilidades entre las demas")
+    
     args = parser.parse_args()
-    alpha = 0.5
-    temperaturaMin = 1
-    temperaturaMax = 100
-    threshold = 0.5
-    iteraciones = 10
+    with open(args.configuracion, 'r') as ymlfile:
+        cfg = yaml.load(ymlfile)
+
+    alpha = cfg["alpha"]
+    temperaturaMin = cfg["temperaturaMin"]
+    temperaturaMax = cfg["temperaturaMax"]
+    threshold = cfg["threshold"]
+    iteraciones = cfg["iteraciones"]
+    
     #Por ejemplo, un templado simulado, pero no es 100% seguro que lo use
     templadoSimulador = strg.SA(alpha, temperaturaMin, temperaturaMax, threshold, iteraciones)
     problema = utils.asignacion(args.Costos, args.Carga,

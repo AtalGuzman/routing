@@ -1,6 +1,5 @@
 import pandas as pd
 
-
 class asignacion:
 
     def __init__(self, costos, cargas, capacidades, nVehiculos, nDemanda, estrategiaDeSolucion, incompatibilidad=None):
@@ -23,12 +22,14 @@ class asignacion:
         # no tiene conflictos
         self.incompatibilidad = [-1 for i in range(nDemanda)]
 
-        #Se actualiza esta información con lo leído desde el archivo de entrada
-        temp = pd.read_csv(incompatibilidad, sep = ";").get_values()
-        for i in range(temp.shape[0]):
-            self.incompatibilidad [int(temp[i][0][1]) -1] = int(temp[i][1][1])-1
-            self.incompatibilidad [int(temp[i][1][1]) -1] = int(temp[i][0][1])-1
-    
+        #Se actualiza esta información con lo leído desde el archivo de entrada, de lo contrario queda todo negativo
+        # y simplemente no se considera al evaluar la restricción de compatibilidad.
+        if incompatibilidad:
+            temp = pd.read_csv(incompatibilidad, sep = ";").get_values()
+            for i in range(temp.shape[0]):
+                self.incompatibilidad [int(temp[i][0][1]) -1] = int(temp[i][1][1])-1
+                self.incompatibilidad [int(temp[i][1][1]) -1] = int(temp[i][0][1])-1
+        
         self.solucion = None
 
     def funcionObjetivo(self, solucion):
@@ -44,14 +45,10 @@ class asignacion:
         return True
 
     def restriccionCompatibilidad(self, solucion):
-        incompatibilidadTemp = self.incompatibilidad.copy()
-        for i, incomp in enumerate(incompatibilidadTemp):
+        for i, incomp in enumerate(self.incompatibilidad):
             if incomp > 0 and solucion[i] == solucion[incomp] and solucion[i] > 0 and solucion[incomp] > 0:
                 return False
         return True
-
-    def actualizarSolucion(self, solucion):
-        self.solucion = solucion
     
     def resolver(self):
         self._estrategia.solve(self)
