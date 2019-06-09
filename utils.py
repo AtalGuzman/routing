@@ -29,7 +29,7 @@ class asignacion:
             for i in range(temp.shape[0]):
                 self.incompatibilidad [int(temp[i][0][1]) -1] = int(temp[i][1][1])-1
                 self.incompatibilidad [int(temp[i][1][1]) -1] = int(temp[i][0][1])-1
-        
+
         self.solucion = None
 
     def funcionObjetivo(self, solucion):
@@ -52,3 +52,6 @@ class asignacion:
     
     def resolver(self):
         self._estrategia.solve(self)
+
+    def graficar(self):
+        self._estrategia.plot()
