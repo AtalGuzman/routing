@@ -1,4 +1,3 @@
-
 import pandas as pd
 
 
@@ -32,23 +31,23 @@ class asignacion:
     
         self.solucion = None
 
-    def functionObjetivo(self, solucion):
-        return sum([self.costos[s][i] for i, s in enumerate(solucion)])
+    def funcionObjetivo(self, solucion):
+        return sum([self.costos[vehiculo][demanda] for demanda, vehiculo in enumerate(solucion) if vehiculo >= 0])
 
-    def restriccionCapacidad(self, solucion, vehiculo):
-        capacidad = self.capacidades[vehiculo]
-        conjuntoI = [self.costos[vehiculo][i]
-                        for i in range(solucion) if vehiculo == solucion[i]]
-        if sum(conjuntoI) > capacidad:
-            return False
+    def restriccionCapacidad(self,solucion):
+        for vehiculo in range(self.nVehiculos):
+            capacidad = self.capacidades[vehiculo]
+            conjuntoI = [self.carga[i]
+                            for i in range(len(solucion)) if vehiculo == solucion[i]]
+            if sum(conjuntoI) > capacidad:
+                return False
         return True
 
     def restriccionCompatibilidad(self, solucion):
         incompatibilidadTemp = self.incompatibilidad.copy()
         for i, incomp in enumerate(incompatibilidadTemp):
-            if incomp > 0 and solucion[i] == solucion[incomp]:
+            if incomp > 0 and solucion[i] == solucion[incomp] and solucion[i] > 0 and solucion[incomp] > 0:
                 return False
-            del incompatibilidadTemp[incomp]
         return True
 
     def actualizarSolucion(self, solucion):
