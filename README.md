@@ -7,7 +7,7 @@ Ingresar en terminal:
 py main.py <nombre archivo de configuración de entradas> <nombre archivo con parámetros de simulated annealing>
 ~~~
 
-Se deben previamente haber copiado los datos en la carpeta ```code\\conf_files```
+Se deben previamente haber copiado los archivos de configuración en la carpeta ```code\\conf_files``` y los archivos de entrada en ```dropzone\in\```
 
 El archivo de configuración de las entradas contiene:
 ~~~
@@ -47,4 +47,4 @@ Se recomienda utilizar los mismo parámetros en este archivo de configuración, 
 
 Un vez terminada la ejecución del programa podrá ver en ``` dropzone\out\``` un archivo llamado solucion <timestamp>.csv y un gráfico llamado <time stamp>.png en caso de que el parámetro graph haya estado seteado en True en el archivo de configuración de entradas.
 
-La documentación asociada está en ```DOC``` y por comodidad se recomienda poner los archivos a utilizar en ```dropzone\in\```
+La documentación asociada está en ```DOC```.
