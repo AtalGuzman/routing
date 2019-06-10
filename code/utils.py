@@ -10,7 +10,7 @@ class asignacion:
         self.nDemanda = int(nDemanda)
 
         # Transformación de lo leído desde el archivo de texto plano a un matriz sencilla
-        preprocesamiento = lambda vector: [
+        def preprocesamiento(vector): return [
             [vector["costo"][y+x*nVehiculos] for x in range(nDemanda)] for y in range(nVehiculos)]
         self.costos = preprocesamiento(pd.read_csv(costos, sep=";"))
 
@@ -37,6 +37,8 @@ class asignacion:
         self.solucion = None
 
     def funcionObjetivo(self, solucion):
+        # Sumatoria de los costos entre de la demanda y el vehículo que la va a suplir, considerando
+        # que es posible que demandas queden sin satisfacer, en cuyo caso no son contabilizadas
         return sum([self.costos[vehiculo][demanda] for demanda, vehiculo in enumerate(solucion) if vehiculo >= 0])
 
     def restriccionCapacidad(self, solucion):
