@@ -1,6 +1,0 @@
-alpha: 0.5
-temperaturaMin: 1
-temperaturaMax: 100
-threshold: 0.1
-iteraciones: 10
-nBsize: 2

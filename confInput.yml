@@ -1,7 +1,0 @@
-nVehiculos: 30
-nDemandas: 130
-costos: dropzone\in\costos2.csv 
-carga: dropzone\in\carga2.csv 
-capacidad: dropzone\in\capacidades2.csv 
-#incompatibilidad: dropzone\in\incompatibilidades2.csv
-graph: True

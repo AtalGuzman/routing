@@ -1,7 +1,0 @@
-alpha: 0.99
-temperaturaMin: 0.05
-temperaturaMax: 15
-threshold: 0.01
-iteraciones: 100
-nBsize: 2
-#Valores parametrizados en base a pruebas empíricas
