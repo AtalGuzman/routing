@@ -1,0 +1,6 @@
+alpha: 0.99
+temperaturaMin: 1
+temperaturaMax: 1000
+threshold: 0.01
+iteraciones: 1000
+nBsize: 2
