@@ -47,4 +47,4 @@ Se recomienda utilizar los mismo parámetros en este archivo de configuración, 
 
 Un vez terminada la ejecución del programa podrá ver en ``` dropzone\out\``` un archivo llamado solucion <timestamp>.csv y un gráfico llamado <time stamp>.png en caso de que el parámetro graph haya estado seteado en True en el archivo de configuración de entradas.
 
-La documentación asociada está en ```DOC``` y por comodidad se recomienda poner los archivos a utilizar en ````dropzone\in\```
+La documentación asociada está en ```DOC``` y por comodidad se recomienda poner los archivos a utilizar en ```dropzone\in\```
